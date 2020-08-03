@@ -2,20 +2,26 @@
 const http = require("http");
 const fs = require('fs');
 const path = require('path');
+const url = require("url");
+const { extname } = require("path");
 // the port being used
-const port = 3474;
-const hostname = 'about';
+const port = 3742;
+
 
 http.createServer(function (request, response) {
-    console.log('request ', request.url);
 
-    console.log(`Request to server for ${req.url}`);
-    // if request to about is given go to about.html
+    let page = url.parse(req.url, true);   
+    let file = `.${page.pathname}`;
+    // if request to about is given go to about.html if not go to index.html
     filePath = '.' + req.url;
-    if (filePath == './about') {
-        filePath = './about.html';
-
+    if (file == "./") {
+        file = "./index.html"; 
     }
+    else if (file == "./about") {
+        file = "./about.html";
+    }
+    console.log(`Request to server for ${req.url}`);
+    let extname = page.pathname.substring(page.pathname.indexOf('.')).toLowerCase();
 
 }).listen(port);
 // server port for the localhost
