@@ -8,7 +8,7 @@ const { extname } = require("path");
 const port = 3742;
 
 
-http.createServer(function (request, response) {
+http.createServer(function (req, response) {
 
     let page = url.parse(req.url, true);   
     let file = `.${page.pathname}`;
